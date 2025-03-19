@@ -1,4 +1,4 @@
-package com.ailsongomes.iotapi;
+package com.arilsongomes.iotapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.ailsongomes.iotapi.entity;
+package com.arilsongomes.iotapi.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
