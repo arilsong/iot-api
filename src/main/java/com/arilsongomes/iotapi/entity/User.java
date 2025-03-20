@@ -34,5 +34,5 @@ public class User {
     private final List<Device> devices = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Subscription> subscription = new ArrayList<>();
+    private final List<Topics> subscription = new ArrayList<>();
 }
