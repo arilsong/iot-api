@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -39,4 +36,23 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(DeviceAlreadyRegistedException.class)
+    public ResponseEntity<ErrorDetails> deviceAlreadRegisted(DeviceAlreadyRegistedException ex){
+
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage());
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorDetails> unauthorizedException(UnauthorizedException ex){
+
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage());
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
 }

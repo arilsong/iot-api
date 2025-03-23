@@ -31,7 +31,7 @@ The goal is to facilitate bidirectional communication between devices (IoT, appl
 - Persistent connection for instant updates (e.g., IoT sensors notifying changes).
 
 ### 👤 User Management
-- Basic authentication for API access (to be expanded).
+- Authentication for API access.
 - Permission control for devices and topics.
 
 ---
@@ -46,7 +46,6 @@ The goal is to facilitate bidirectional communication between devices (IoT, appl
 ---
 
 ## 🔜 Next Steps
-- Implement JWT authentication for route security.
 - Add message persistence to the database for history.
 - Create an email/SMS notification system for critical messages.
 - Develop an administrative interface for monitoring topics and devices.

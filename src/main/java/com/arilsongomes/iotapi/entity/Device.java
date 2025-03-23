@@ -1,10 +1,12 @@
 package com.arilsongomes.iotapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UUID;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,8 +19,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Device {
+
     @Id
-    @Column(name = "mac_adress", length = 17, unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
+    @Column(name = "mac_adress", unique = true, nullable = false)
     private String macAdress;
 
     @ManyToOne(fetch = FetchType.LAZY)
