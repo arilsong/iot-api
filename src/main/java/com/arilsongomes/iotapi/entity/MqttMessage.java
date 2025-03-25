@@ -24,7 +24,7 @@ public class MqttMessage {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mac_address", nullable = false)
+    @JoinColumn(name = "device_id", nullable = false)
     private Device device;
 
     @Column(nullable = false)
@@ -36,9 +36,4 @@ public class MqttMessage {
     @Column(nullable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    @Column(nullable = false)
-    private int qos;
-
-    @Column(nullable = false)
-    private boolean retained = false;
 }
