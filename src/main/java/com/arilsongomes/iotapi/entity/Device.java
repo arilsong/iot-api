@@ -31,6 +31,9 @@ public class Device {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Topic> topics = new ArrayList<>();
+
     @Column(nullable = false)
     private String name;
 

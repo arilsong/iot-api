@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Topics {
+public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,10 @@ public class Topics {
 
     @Column(name = "topic_pattern", nullable = false)
     private String topicPattern;
+
+    @ManyToOne
+    @JoinColumn(name = "device_id", nullable = false)
+    private Device device;
 
     @Column(nullable = false)
     private int qos;

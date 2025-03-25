@@ -1,6 +1,5 @@
 package com.arilsongomes.iotapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +34,5 @@ public class User {
     private final List<Device> devices = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Topics> subscription = new ArrayList<>();
+    private final List<Topic> topic = new ArrayList<>();
 }
