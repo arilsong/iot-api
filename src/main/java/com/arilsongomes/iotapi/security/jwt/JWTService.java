@@ -1,6 +1,7 @@
 package com.arilsongomes.iotapi.security.jwt;
 
 
+import com.arilsongomes.iotapi.entity.User;
 import com.arilsongomes.iotapi.repositories.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -10,6 +11,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -33,6 +35,13 @@ public class JWTService {
 
     public String getGenaretedToken(String userName) {
         Map<String, Object> claims = new HashMap<>();
+
+        User user = userRepository.findByEmail(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + userName));
+
+        
+        claims.put("userId", user.getId());
+
         return generateTokenForUser(claims, userName);
     }
 
@@ -52,6 +61,10 @@ public class JWTService {
 
     public String extractUserNameFromToken(String theToken){
         return extractClaim(theToken, Claims::getSubject);
+    }
+
+    public Long extractUserIdFromToken(String theToken){
+        return extractClaim(theToken, claims -> claims.get("userId", Long.class));
     }
 
     public Date extractExpirationTimeFromToken(String theToken){
