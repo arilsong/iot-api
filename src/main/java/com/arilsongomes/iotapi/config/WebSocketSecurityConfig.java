@@ -44,7 +44,7 @@ public class WebSocketSecurityConfig implements WebSocketMessageBrokerConfigurer
                 if (StompCommand.SUBSCRIBE.equals(accessor.getCommand())) {
                         Map<String, Object> sessionAttributes = accessor.getSessionAttributes();
                         if (sessionAttributes == null || !sessionAttributes.containsKey("userId")) {
-                            throw new UnauthorizedException("ssksks");
+                            throw new UnauthorizedException("Subscription denied");
                         }
 
                         Long userId = (Long) sessionAttributes.get("userId");

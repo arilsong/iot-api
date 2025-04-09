@@ -16,4 +16,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     @Query("SELECT t FROM Topic t WHERE t.user = :user")
     List<Topic> findByUser(@Param("user") User user);
+
+    boolean existsByUserIdAndTopicPattern(Long userId, String topic);
 }

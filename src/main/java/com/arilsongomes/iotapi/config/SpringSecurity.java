@@ -30,10 +30,12 @@ public class SpringSecurity {
 
      @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http    .cors(cors -> {})
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST,"/v1/api/user").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/api/authenticate").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -41,6 +43,7 @@ public class SpringSecurity {
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return  http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {

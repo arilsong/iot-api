@@ -34,10 +34,9 @@ public class WebSocketAuthController {
         //Long userId = headerAccessor.getUser().getName();
 
         if (!subscriptionService.isValidSubscription(1L, topic)) {
-            return "Acesso negado ao tópico: " + topic;
+            return "Acess denied to topic" + topic;
         }
 
-        // Se válido, a inscrição é mantida
         return null;
     }
 }
